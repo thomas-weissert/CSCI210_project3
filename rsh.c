@@ -74,13 +74,16 @@ int main() {
 	argv[position] = NULL;
 	int argc = position;
 
-	if (!isAllowed(argv[0])) continue;
+	if (!isAllowed(argv[0])) {
+		printf("NOT ALLOWED!\n");
+		continue;
+	}
 	
 
 
 
 
-	
+
 	// TODO
 	// Add code to spawn processes for the first 9 commands
 	// And add code to execute cd, exit, help commands
