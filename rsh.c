@@ -42,6 +42,10 @@ int main() {
 
     // TODO
     // Add variables as needed
+	posix_spawnattr_t attr;
+	posix_spawnattr_init(&attr);
+	int status;
+	pid_t pid;
 
     char line[256];
 
@@ -68,17 +72,40 @@ int main() {
 		tok = strtok(NULL, " ");
 	}
 	argv[position] = NULL;
+	int argc = position;
 	
 
 	// TODO
 	// Add code to spawn processes for the first 9 commands
 	// And add code to execute cd, exit, help commands
 	// Use the example provided in myspawn.c
-	if (!isAllowed(argv[0])){
-		printf("NOT ALLOWED!\n");
+
+	if (strcmp(argv[0], "exit") == 0) {
+    	return 0;
+	} else if (strcmp(argv[0], "help") == 0) {
+    	help();
+	} else if (strcmp(argv[0], "cd") == 0){
+		if (argc != 2){
+			printf("rsh: cd: too many arguments\n");
+		} else {
+			chdir(argv[1]);
+		}
 		continue;
-	} 
+	}
+
+
+
+
 	
+
+    // Set flags if needed, for example, to specify the scheduling policy
+    // posix_spawnattr_setflags(&attr, POSIX_SPAWN_SETSCHEDULER);
+
+    // Spawn a new process
+    posix_spawnp(&pid, argv[0], NULL, NULL, argv, environ);
+
+	waitpid(pid, &status, 0);
+
 	}	
 	
     return 0;
