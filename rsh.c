@@ -24,18 +24,18 @@ int isAllowed(const char*cmd) {
 }
 void help() {
     printf("The allowed commands are:\n");
-    printf("cp\n");
-    printf("touch\n");
-    printf("mkdir\n");
-    printf("ls\n");
-    printf("pwd\n");
-    printf("cat\n");
-    printf("grep\n");
-    printf("chmod\n");
-    printf("diff\n");
-    printf("cd\n");
-    printf("exit\n");
-    printf("help\n");
+    printf("1: cp\n");
+    printf("2: touch\n");
+    printf("3: mkdir\n");
+    printf("4: ls\n");
+    printf("5: pwd\n");
+    printf("6: cat\n");
+    printf("7: grep\n");
+    printf("8: chmod\n");
+    printf("9: diff\n");
+    printf("10: cd\n");
+    printf("11: exit\n");
+    printf("12: help\n");
 }
 
 int main() {
@@ -73,8 +73,14 @@ int main() {
 	}
 	argv[position] = NULL;
 	int argc = position;
+
+	if (!isAllowed(argv[0])) continue;
 	
 
+
+
+
+	
 	// TODO
 	// Add code to spawn processes for the first 9 commands
 	// And add code to execute cd, exit, help commands
